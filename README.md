@@ -9,6 +9,8 @@
 [![Swift Version](https://img.shields.io/badge/swift-5.1-orange.svg)](https://swift.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
+It is a framework which includes core of our architecture, networking, database, base classes, and helper classes. We use it in every our project. KafeityKit is part of [Kafeity](https://github.com/skoumalcz/kafeity/).
+
 ## Requirements
 
 * iOS 10.3+
