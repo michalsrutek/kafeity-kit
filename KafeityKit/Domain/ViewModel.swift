@@ -9,6 +9,21 @@
 import Foundation
 
 
+public protocol RxVM {
+    
+    associatedtype Inputs
+    associatedtype Outputs
+    
+    var inputs: Inputs { get }
+    var outputs: Outputs { get }
+    
+}
+
+
 public protocol ViewModel {
+    
+    associatedtype RxType: RxVM
+    
+    var rx: RxType { get }
     
 }
