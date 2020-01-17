@@ -7,23 +7,15 @@
 //
 
 import Foundation
+import RxSwift
 
 
-public protocol RxVM {
+public protocol ViewModel: ReactiveCompatible {
     
     associatedtype Inputs
     associatedtype Outputs
     
     var inputs: Inputs { get }
     var outputs: Outputs { get }
-    
-}
-
-
-public protocol ViewModel {
-    
-    associatedtype RxType: RxVM
-    
-    var rx: RxType { get }
     
 }
