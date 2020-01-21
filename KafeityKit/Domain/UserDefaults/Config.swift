@@ -18,6 +18,6 @@ public enum ConfigKey {
 public struct Config {
     
     @UserDefault(key: ConfigKey.token, defaultValue: nil)
-    static var token: String?
+    public static var token: String?
     
 }
