@@ -21,7 +21,7 @@ public class Database {
 
     private let coreDataStorage: CoreDataStorage
     
-    init(storage: CoreDataStorage) {
+    public init(storage: CoreDataStorage) {
         coreDataStorage = storage
     }
 
