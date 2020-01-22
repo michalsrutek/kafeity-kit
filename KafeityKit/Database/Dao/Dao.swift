@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 
-public class Dao<T> where T: NSManagedObject, T: Entity {
+open class Dao<T> where T: NSManagedObject, T: Entity {
 
     public let database: Database
 

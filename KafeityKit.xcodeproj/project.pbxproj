@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181560AF23D819D000B3EA8F /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181560AE23D819D000B3EA8F /* DataRepository.swift */; };
+		181560B123D81A0300B3EA8F /* SourceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181560B023D81A0300B3EA8F /* SourceRepository.swift */; };
 		185467E423A16BBB00DDB443 /* KafeityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185467DA23A16BBA00DDB443 /* KafeityKit.framework */; };
 		185467E923A16BBB00DDB443 /* KafeityKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185467E823A16BBB00DDB443 /* KafeityKitTests.swift */; };
 		185467EB23A16BBB00DDB443 /* KafeityKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 185467DD23A16BBA00DDB443 /* KafeityKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -52,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		181560AE23D819D000B3EA8F /* DataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
+		181560B023D81A0300B3EA8F /* SourceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceRepository.swift; sourceTree = "<group>"; };
 		185467DA23A16BBA00DDB443 /* KafeityKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KafeityKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		185467DD23A16BBA00DDB443 /* KafeityKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KafeityKit.h; sourceTree = "<group>"; };
 		185467DE23A16BBA00DDB443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -233,6 +237,8 @@
 			children = (
 				18C0F89F23C5DBB70046108B /* ViewModel.swift */,
 				18C0F8A123C5DBE80046108B /* UseCase.swift */,
+				181560AE23D819D000B3EA8F /* DataRepository.swift */,
+				181560B023D81A0300B3EA8F /* SourceRepository.swift */,
 				187D6A3623CC64B100369DA3 /* UserDefaults */,
 			);
 			path = Domain;
@@ -437,9 +443,11 @@
 				18C0F8CF23C5DE320046108B /* Resources.swift in Sources */,
 				18C0F8E823C5DF620046108B /* RxBusEvent.swift in Sources */,
 				18C0F8F923C701470046108B /* Query.swift in Sources */,
+				181560AF23D819D000B3EA8F /* DataRepository.swift in Sources */,
 				18C0F8FC23C701470046108B /* Dao.swift in Sources */,
 				18C0F8EA23C5E0AD0046108B /* LogoutBusEvent.swift in Sources */,
 				187D6A3823CC64C600369DA3 /* UserDefault.swift in Sources */,
+				181560B123D81A0300B3EA8F /* SourceRepository.swift in Sources */,
 				187D6A3A23CC671000369DA3 /* Config.swift in Sources */,
 				18C0F8F723C701470046108B /* Database.swift in Sources */,
 				18C0F8D123C5DE320046108B /* API.swift in Sources */,
