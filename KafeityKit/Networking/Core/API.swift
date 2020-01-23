@@ -116,7 +116,7 @@ public class API<ErrorResponseType: Error> where ErrorResponseType: Decodable {
         }
     }
     
-    func parseResponse<Response: Decodable>(request: RequestConvertible, urlRequest: URLRequest, response: Alamofire.DataResponse<Data>, single: (SingleEvent<Response>) -> (), responseHeaders: (([AnyHashable : Any]) -> Void)? = nil) {
+    public func parseResponse<Response: Decodable>(request: RequestConvertible, urlRequest: URLRequest, response: Alamofire.DataResponse<Data>, single: (SingleEvent<Response>) -> (), responseHeaders: (([AnyHashable : Any]) -> Void)? = nil) {
         switch response.result {
         case .success(let data):
             responseHeaders?(response.response?.allHeaderFields ?? [:])
