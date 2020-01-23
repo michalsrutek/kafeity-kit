@@ -12,7 +12,7 @@ public enum Resources {
 
     private static let jsonEncoder = JSONEncoder()
 
-    static func encode<T: Encodable>(_ body: T) throws -> Data {
+    public static func encode<T: Encodable>(_ body: T) throws -> Data {
         return try jsonEncoder.encode(body)
     }
     
