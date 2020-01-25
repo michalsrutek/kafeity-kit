@@ -1,3 +1,2 @@
 github "RxSwiftCommunity/RxOptional" ~> 4.0.0
-github "ReactiveX/RxSwift" ~> 5.0.1
-github "Alamofire/Alamofire" "4.9.0"
+
