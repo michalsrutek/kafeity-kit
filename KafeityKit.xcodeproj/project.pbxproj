@@ -25,6 +25,8 @@
 		1854680A23A17AC300DDB443 /* RxSwift+Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854680823A17AC300DDB443 /* RxSwift+Functions.swift */; };
 		187D6A3823CC64C600369DA3 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D6A3723CC64C600369DA3 /* UserDefault.swift */; };
 		187D6A3A23CC671000369DA3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D6A3923CC671000369DA3 /* Config.swift */; };
+		189B29F523DC00820077357F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D6A3923CC671000369DA3 /* Config.swift */; };
+		189B29F623DC00870077357F /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D6A3723CC64C600369DA3 /* UserDefault.swift */; };
 		18C0F87A23C5B9250046108B /* RxOptional.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0F87923C5B9250046108B /* RxOptional.framework */; };
 		18C0F8A023C5DBB70046108B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C0F89F23C5DBB70046108B /* ViewModel.swift */; };
 		18C0F8A223C5DBE80046108B /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C0F8A123C5DBE80046108B /* UseCase.swift */; };
@@ -460,6 +462,8 @@
 			files = (
 				185467FA23A16CBE00DDB443 /* SyncComponentProtocol.swift in Sources */,
 				1854680A23A17AC300DDB443 /* RxSwift+Functions.swift in Sources */,
+				189B29F623DC00870077357F /* UserDefault.swift in Sources */,
+				189B29F523DC00820077357F /* Config.swift in Sources */,
 				185467F723A16C2A00DDB443 /* Sync.swift in Sources */,
 				185467E923A16BBB00DDB443 /* KafeityKitTests.swift in Sources */,
 			);

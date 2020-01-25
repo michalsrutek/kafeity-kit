@@ -26,6 +26,9 @@ class KafeityKitTests: XCTestCase {
         
         //let sync = Sync(components: [])
         //sync.rx.isSyncing
+        
+        Config.token = nil
+        assert(Config.token == nil)
     }
 
     func testPerformanceExample() {

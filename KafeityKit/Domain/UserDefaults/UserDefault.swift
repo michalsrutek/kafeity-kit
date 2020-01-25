@@ -18,10 +18,25 @@ public struct UserDefault<ValueType> {
     
     public var wrappedValue: ValueType {
         get {
-            return UserDefaults.standard.value(forKey: key) as? ValueType ?? defaultValue
+            let udValue = defaults.object(forKey: key) as? ValueType
+            switch (udValue as Any) {
+            case Optional<Any>.some(let value):
+                return value as! ValueType
+            case Optional<Any>.none:
+                return defaultValue
+            default:
+                return udValue ?? defaultValue
+            }
         }
         set {
-            defaults.set(newValue, forKey: key)
+            switch (newValue as Any) {
+            case Optional<Any>.some(let value):
+                defaults.set(value, forKey: key)
+            case Optional<Any>.none:
+                defaults.removeObject(forKey: key)
+            default:
+                defaults.set(newValue, forKey: key)
+            }
         }
     }
     
