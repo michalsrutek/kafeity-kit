@@ -18,7 +18,7 @@ public struct UserDefault<ValueType> {
     
     public var wrappedValue: ValueType {
         get {
-            return UserDefaults.standard.object(forKey: key) as? ValueType ?? defaultValue
+            return UserDefaults.standard.value(forKey: key) as? ValueType ?? defaultValue
         }
         set {
             defaults.set(newValue, forKey: key)
