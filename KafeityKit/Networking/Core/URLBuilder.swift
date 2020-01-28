@@ -47,7 +47,7 @@ public enum QueryItem {
     }
 }
 
-public class URLBuilder {
+open class URLBuilder {
 
     private let url: String
     private var queryItems = [URLQueryItem]()
