@@ -12,10 +12,8 @@ import RxSwift
 
 public protocol ViewModel: ReactiveCompatible {
     
-    associatedtype Inputs
-    associatedtype Outputs
+    associatedtype Rx
     
-    var inputs: Inputs { get }
-    var outputs: Outputs { get }
+    var rx: Rx { get }
     
 }
