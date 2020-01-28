@@ -12,6 +12,10 @@ import RxSwift
 public class RxBus {
 
     private let bus = PublishSubject<RxBusEvent>()
+    
+    public init() {
+        
+    }
 
     public func register<T>(_ type: T.Type) -> Observable<T> where T: RxBusEvent {
         return bus
