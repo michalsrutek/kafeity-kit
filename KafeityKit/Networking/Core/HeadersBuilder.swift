@@ -14,6 +14,7 @@ public enum HeaderItem {
     case acceptLanguage(String)
     case contentType(HeadersBuilder.ContentType)
     case accept(String)
+    case generic(String, String)
     
     var key: String {
         switch self {
@@ -21,6 +22,7 @@ public enum HeaderItem {
         case .acceptLanguage: return "Accept-Language"
         case .contentType: return "Content-Type"
         case .accept: return "Accept"
+        case .generic(let key, _): return key
         }
     }
     
@@ -30,6 +32,7 @@ public enum HeaderItem {
         case .acceptLanguage(let language): return language
         case .contentType(let contentType): return contentType.toString
         case .accept(let value): return value
+        case .generic(_, let value): return value
         }
     }
 }
