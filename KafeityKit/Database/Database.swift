@@ -15,7 +15,7 @@ public class Database {
         return coreDataStorage.mainQueueCtxt!
     }
     
-    var privateContext: NSManagedObjectContext {
+    public var privateContext: NSManagedObjectContext {
         return coreDataStorage.privateQueueCtxt!
     }
 
