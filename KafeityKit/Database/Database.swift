@@ -42,6 +42,12 @@ public class Database {
         moc.delete(object)
         save(moc: moc)
     }
+    
+    func count(entityName: String, moc: NSManagedObjectContext? = nil) -> Int {
+        let moc = moc ?? mainContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        return (try? moc.count(for: fetchRequest)) ?? 0
+    }
 
     func delete(entityName: String, predicate: NSPredicate? = nil, moc: NSManagedObjectContext? = nil) {
         let moc = moc ?? mainContext

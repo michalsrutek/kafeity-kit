@@ -19,10 +19,6 @@ open class Dao<T> where T: NSManagedObject, T: Entity {
         self.database = database
     }
 
-    public func save(context: NSManagedObjectContext? = nil) {
-        database.save(moc: context)
-    }
-
     public func add(context: NSManagedObjectContext? = nil) -> T {
         return database.insert(moc: context)
     }
@@ -30,32 +26,55 @@ open class Dao<T> where T: NSManagedObject, T: Entity {
     public func delete(_ object: T, context: NSManagedObjectContext? = nil) {
         database.delete(object: object)
     }
-
+    
     public func deleteAll(context: NSManagedObjectContext? = nil) {
-        database.delete(entityName: T.entityName, moc: context)
+        database.delete(entityName: String(describing: T.self), moc: context)
     }
-
-    public func fetch(_ query: Query, context: NSManagedObjectContext? = nil) -> T? {
+    
+    public func count(context: NSManagedObjectContext? = nil) -> Int {
+        return database.count(entityName: String(describing: T.self), moc: context)
+    }
+    
+    public func find(by key: String = "id", value: Int, context: NSManagedObjectContext? = nil) -> [T] {
         let moc = context ?? database.mainContext
-
-        return database.fetch(entityName: T.entityName, predicate: query.predicate, moc: moc).first
+        let predicate = NSPredicate(format: "%K = %d", key, value)
+        return database.fetch(entityName: String(describing: T.self), predicate: predicate, moc: moc)
+    }
+    
+    public func find(by key: String = "id", value: String, context: NSManagedObjectContext? = nil) -> [T] {
+        let moc = context ?? database.mainContext
+        let predicate = NSPredicate(format: "%K = %@", key, value)
+        return database.fetch(entityName: String(describing: T.self), predicate: predicate, moc: moc)
+    }
+    
+    public func fetchAll(context: NSManagedObjectContext? = nil) -> [T] {
+        let entities: [T] = self.database.fetch(entityName: String(describing: T.self), moc: context)
+        return entities
+    }
+    
+    public func fetchAll(sortDescriptor: NSSortDescriptor? = nil, context: NSManagedObjectContext? = nil) -> Single<[T]> {
+        return Single.create(subscribe: { [unowned self] (single) -> Disposable in
+            let entities: [T] = self.database.fetch(entityName: String(describing: T.self), sortDescriptor: sortDescriptor, moc: context)
+            single(.success(entities))
+            return Disposables.create()
+        })
+    }
+    
+    public func fetchAll(sortKey: String, context: NSManagedObjectContext? = nil) -> Single<[T]> {
+        let sortDescriptor = NSSortDescriptor(key: sortKey, ascending: true)
+        return fetchAll(sortDescriptor: sortDescriptor, context: context)
     }
 
     public func fetch(_ query: Query, context: NSManagedObjectContext? = nil) -> Single<[T]> {
         let moc = context ?? database.mainContext
+
         let fetchRequest = NSFetchRequest<T>()
-        let entityDescription = NSEntityDescription.entity(forEntityName: T.entityName, in: moc)
+        let entityDescription = NSEntityDescription.entity(forEntityName: String(describing: T.self), in: moc)
 
         fetchRequest.entity = entityDescription
         fetchRequest.predicate = query.predicate
         if let sortDescriptor = query.sortDescriptor {
             fetchRequest.sortDescriptors = [sortDescriptor]
-        }
-        if let fetchOffset = query.fetchOffset {
-            fetchRequest.fetchOffset = fetchOffset
-        }
-        if let fetchLimit = query.fetchLimit {
-            fetchRequest.fetchLimit = fetchLimit
         }
 
         return Single.create(subscribe: { (single) -> Disposable in
