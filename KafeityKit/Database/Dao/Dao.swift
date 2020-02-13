@@ -31,8 +31,8 @@ open class Dao<T> where T: NSManagedObject, T: Entity {
         database.delete(entityName: String(describing: T.self), moc: context)
     }
     
-    public func count(context: NSManagedObjectContext? = nil) -> Int {
-        return database.count(entityName: String(describing: T.self), moc: context)
+    public func count(query: Query, context: NSManagedObjectContext? = nil) -> Int {
+        return database.count(entityName: String(describing: T.self), predicate: query.predicate, moc: context)
     }
     
     public func find(by key: String = "id", value: Int, context: NSManagedObjectContext? = nil) -> [T] {

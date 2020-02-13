@@ -11,4 +11,8 @@ import Foundation
 
 public class LogoutBusEvent: RxBusEvent {
     
+    public init() {
+        
+    }
+    
 }

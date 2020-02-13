@@ -43,9 +43,10 @@ public class Database {
         save(moc: moc)
     }
     
-    func count(entityName: String, moc: NSManagedObjectContext? = nil) -> Int {
+    func count(entityName: String, predicate: NSPredicate, moc: NSManagedObjectContext? = nil) -> Int {
         let moc = moc ?? mainContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        fetchRequest.predicate = predicate
         return (try? moc.count(for: fetchRequest)) ?? 0
     }
 
