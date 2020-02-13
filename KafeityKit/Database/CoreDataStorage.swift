@@ -15,10 +15,12 @@ public class CoreDataStorage {
     // MARK: - Initialization
     
     private let modelName: String
+    private let fileName: String?
     private let bundle: Bundle?
     
-    public init(modelName: String, bundle: Bundle?) {
+    public init(modelName: String, fileName: String?, bundle: Bundle?) {
         self.modelName = modelName
+        self.fileName = fileName
         self.bundle = bundle
         
         NotificationCenter.default.addObserver(self, selector: #selector(contextDidSavePrivateQueueContext(notification:)), name: NSNotification.Name.NSManagedObjectContextDidSave, object: self.privateQueueCtxt)
@@ -81,7 +83,7 @@ public class CoreDataStorage {
         // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = applicationDocumentsDirectory.appendingPathComponent("Model.sqlite")
+        let url = applicationDocumentsDirectory.appendingPathComponent("\(fileName ?? "Model").sqlite")
 
         do {
             try coordinator!.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: storeOptions)
