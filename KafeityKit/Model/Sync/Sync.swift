@@ -48,18 +48,26 @@ public final class Sync {
         }
         lastErrors.accept([])
         isSyncing.accept(true)
-        run(components: startComponents) { [unowned self] in
-            self.run(components: self.components) { [unowned self] in
-                self.run(components: self.endComponents) { [unowned self] in
+        run(components: startComponents) { [unowned self] canContinue in
+            if !canContinue {
+                self.syncEnded()
+                return
+            }
+            self.run(components: self.components) { [unowned self] canContinue in
+                if !canContinue {
+                    self.syncEnded()
+                    return
+                }
+                self.run(components: self.endComponents) { [unowned self] _ in
                     self.syncEnded()
                 }
             }
         }
     }
     
-    private func run(components: [SyncComponentProtocol], completion: @escaping () -> Void) {
+    private func run(components: [SyncComponentProtocol], completion: @escaping (Bool) -> Void) {
         guard let component = components.first else {
-            syncEnded()
+            completion(true)
             return
         }
         let remainComponents = Array(components.dropFirst())
@@ -74,7 +82,7 @@ public final class Sync {
             if component.continueOnFail {
                 self.run(components: remainComponents, completion: completion)
             } else {
-                completion()
+                completion(false)
             }
         }.disposed(by: disposeBag)
     }
