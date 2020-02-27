@@ -17,9 +17,3 @@ public protocol SyncComponentProtocol {
     func run() -> Completable
     
 }
-
-extension SyncComponentProtocol {
-    
-    
-    
-}

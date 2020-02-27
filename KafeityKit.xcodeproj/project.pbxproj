@@ -27,6 +27,8 @@
 		187D6A3A23CC671000369DA3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D6A3923CC671000369DA3 /* Config.swift */; };
 		189B29F523DC00820077357F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D6A3923CC671000369DA3 /* Config.swift */; };
 		189B29F623DC00870077357F /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D6A3723CC64C600369DA3 /* UserDefault.swift */; };
+		189EFE27240786810072F02A /* SyncStartComponentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189EFE26240786810072F02A /* SyncStartComponentProtocol.swift */; };
+		189EFE29240786C60072F02A /* SyncEndComponentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189EFE28240786C60072F02A /* SyncEndComponentProtocol.swift */; };
 		18C0F87A23C5B9250046108B /* RxOptional.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0F87923C5B9250046108B /* RxOptional.framework */; };
 		18C0F8A023C5DBB70046108B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C0F89F23C5DBB70046108B /* ViewModel.swift */; };
 		18C0F8A223C5DBE80046108B /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C0F8A123C5DBE80046108B /* UseCase.swift */; };
@@ -72,6 +74,8 @@
 		1854680823A17AC300DDB443 /* RxSwift+Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxSwift+Functions.swift"; sourceTree = "<group>"; };
 		187D6A3723CC64C600369DA3 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		187D6A3923CC671000369DA3 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		189EFE26240786810072F02A /* SyncStartComponentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStartComponentProtocol.swift; sourceTree = "<group>"; };
+		189EFE28240786C60072F02A /* SyncEndComponentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncEndComponentProtocol.swift; sourceTree = "<group>"; };
 		18C0F87923C5B9250046108B /* RxOptional.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxOptional.framework; path = Carthage/Build/iOS/RxOptional.framework; sourceTree = "<group>"; };
 		18C0F89F23C5DBB70046108B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		18C0F8A123C5DBE80046108B /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 			children = (
 				185467F523A16C2A00DDB443 /* Sync.swift */,
 				185467F823A16CBE00DDB443 /* SyncComponentProtocol.swift */,
+				189EFE26240786810072F02A /* SyncStartComponentProtocol.swift */,
+				189EFE28240786C60072F02A /* SyncEndComponentProtocol.swift */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -434,12 +440,14 @@
 				18C0F8F823C701470046108B /* CoreDataStorage.swift in Sources */,
 				18C0F8A223C5DBE80046108B /* UseCase.swift in Sources */,
 				18C0F8FE23C701470046108B /* Entity.swift in Sources */,
+				189EFE27240786810072F02A /* SyncStartComponentProtocol.swift in Sources */,
 				18C0F8E623C5DF470046108B /* RxBus.swift in Sources */,
 				1854680923A17AC300DDB443 /* RxSwift+Functions.swift in Sources */,
 				185467F923A16CBE00DDB443 /* SyncComponentProtocol.swift in Sources */,
 				18C0F8A023C5DBB70046108B /* ViewModel.swift in Sources */,
 				18C0F8DF23C5DE320046108B /* RequestConvertible.swift in Sources */,
 				18C0F8D023C5DE320046108B /* HeadersBuilder.swift in Sources */,
+				189EFE29240786C60072F02A /* SyncEndComponentProtocol.swift in Sources */,
 				18C0F8D223C5DE320046108B /* URLBuilder.swift in Sources */,
 				185467F623A16C2A00DDB443 /* Sync.swift in Sources */,
 				18C0F8CF23C5DE320046108B /* Resources.swift in Sources */,

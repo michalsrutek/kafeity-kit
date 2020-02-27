@@ -13,7 +13,9 @@ import RxRelay
 
 public final class Sync {
     
+    public let startComponents: [SyncStartComponentProtocol]
     public let components: [SyncComponentProtocol]
+    public let endComponents: [SyncEndComponentProtocol]
     
     fileprivate let lastErrors = BehaviorRelay<[Error]>(value: [])
     fileprivate let isSyncing = BehaviorRelay(value: false)
@@ -21,7 +23,23 @@ public final class Sync {
     private let disposeBag = DisposeBag()
     
     public init(components: [SyncComponentProtocol]) {
+        var startComponents = [SyncStartComponentProtocol]()
+        var components = [SyncComponentProtocol]()
+        var endComponents = [SyncEndComponentProtocol]()
+        
+        for component in components {
+            if let startComponent = component as? SyncStartComponentProtocol {
+                startComponents.append(startComponent)
+            } else if let endComponent = component as? SyncEndComponentProtocol {
+                endComponents.append(endComponent)
+            } else {
+                components.append(component)
+            }
+        }
+        
+        self.startComponents = startComponents
         self.components = components
+        self.endComponents = endComponents
     }
     
     public func start() {
@@ -30,10 +48,16 @@ public final class Sync {
         }
         lastErrors.accept([])
         isSyncing.accept(true)
-        run(components: components)
+        run(components: startComponents) { [unowned self] in
+            self.run(components: self.components) { [unowned self] in
+                self.run(components: self.endComponents) { [unowned self] in
+                    self.syncEnded()
+                }
+            }
+        }
     }
     
-    private func run(components: [SyncComponentProtocol]) {
+    private func run(components: [SyncComponentProtocol], completion: @escaping () -> Void) {
         guard let component = components.first else {
             syncEnded()
             return
@@ -41,16 +65,16 @@ public final class Sync {
         let remainComponents = Array(components.dropFirst())
         
         component.run().subscribe(onCompleted: { [unowned self] in
-            self.run(components: remainComponents)
+            self.run(components: remainComponents, completion: completion)
         }) { [unowned self] (error) in
             var errors = self.lastErrors.value
             errors.append(error)
             self.lastErrors.accept(errors)
             
             if component.continueOnFail {
-                self.run(components: remainComponents)
+                self.run(components: remainComponents, completion: completion)
             } else {
-                self.syncEnded()
+                completion()
             }
         }.disposed(by: disposeBag)
     }
