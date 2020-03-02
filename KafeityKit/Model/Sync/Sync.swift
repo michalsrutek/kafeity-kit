@@ -24,7 +24,7 @@ public final class Sync {
     
     public init(components: [SyncComponentProtocol]) {
         var startComponents = [SyncStartComponentProtocol]()
-        var components = [SyncComponentProtocol]()
+        var syncComponents = [SyncComponentProtocol]()
         var endComponents = [SyncEndComponentProtocol]()
         
         for component in components {
@@ -33,12 +33,12 @@ public final class Sync {
             } else if let endComponent = component as? SyncEndComponentProtocol {
                 endComponents.append(endComponent)
             } else {
-                components.append(component)
+                syncComponents.append(component)
             }
         }
         
         self.startComponents = startComponents
-        self.components = components
+        self.components = syncComponents
         self.endComponents = endComponents
     }
     
