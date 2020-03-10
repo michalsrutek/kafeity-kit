@@ -14,6 +14,7 @@ public protocol RequestConvertible: URLRequestConvertible {
     var method: HTTPMethod { get }
     var allowCache: Bool { get }
     var allowAcceptType: Bool { get }
+    var cachePolicy: URLRequest.CachePolicy? { get }
     var commonHeaders: [HeaderItem]? { get }
 
     func encodeBody() throws -> Data?
@@ -23,6 +24,10 @@ public extension RequestConvertible {
     
     var allowAcceptType: Bool {
         return true
+    }
+    
+    var cachePolicy: URLRequest.CachePolicy? {
+        return nil
     }
     
 }
@@ -51,9 +56,12 @@ public extension RequestConvertible {
         if allowAcceptType {
             _ = headers.add(.accept("application/json"))
         }
+        
+        if let cachePolicy = cachePolicy {
+            request.cachePolicy = cachePolicy
+        }
 
         request.allHTTPHeaderFields = headers.build()
-
         return request
     }
 }
