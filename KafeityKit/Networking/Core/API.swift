@@ -55,14 +55,14 @@ public class API<ErrorResponseType: Error> where ErrorResponseType: Decodable {
         }
     }
 
-    public func execute<Response: Decodable>(request: RequestConvertible, successCodes: Set<Int>? = nil, responseHeaders: (([AnyHashable : Any]) -> Void)? = nil) -> Single<Response> {
+    public func execute<Response: Decodable>(request: RequestConvertible, successCodes: Set<Int>? = nil, responseHeaders: (([AnyHashable : Any]) -> Void)? = nil, debug: Bool = false) -> Single<Response> {
         let urlRequest = try! request.asURLRequest()
 
         return Single<Response>.create { (single) -> Disposable in
             let session = Alamofire.request(urlRequest)
                 .validate(statusCode: Set(200 ..< 300).union(successCodes ?? Set()))
                 .responseData(completionHandler: { [unowned self] (response) in
-                    self.parseResponse(request: request, urlRequest: urlRequest, response: response, single: single, responseHeaders: responseHeaders)
+                    self.parseResponse(request: request, urlRequest: urlRequest, response: response, single: single, responseHeaders: responseHeaders, debug: debug)
                 })
 
             return Disposables.create {
@@ -116,7 +116,18 @@ public class API<ErrorResponseType: Error> where ErrorResponseType: Decodable {
         }
     }
     
-    public func parseResponse<Response: Decodable>(request: RequestConvertible, urlRequest: URLRequest, response: Alamofire.DataResponse<Data>, single: (SingleEvent<Response>) -> (), responseHeaders: (([AnyHashable : Any]) -> Void)? = nil) {
+    public func parseResponse<Response: Decodable>(request: RequestConvertible, urlRequest: URLRequest, response: Alamofire.DataResponse<Data>, single: (SingleEvent<Response>) -> (), responseHeaders: (([AnyHashable : Any]) -> Void)? = nil, debug: Bool = false) {
+        if debug {
+            print("---Request---")
+            print(urlRequest)
+            print(urlRequest.allHTTPHeaderFields as Any)
+            print("---Response---")
+            print(response.response?.statusCode as Any)
+            print(response.response as Any)
+            print(response.response?.allHeaderFields as Any)
+            print("---Data---")
+            print(String(data: response.data ?? Data(), encoding: .utf8) as Any)
+        }
         switch response.result {
         case .success(let data):
             responseHeaders?(response.response?.allHeaderFields ?? [:])
